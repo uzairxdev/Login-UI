@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import '../../Core/Animation/Fade_Animation.dart';
 import '../../Core/Colors/Hex_Color.dart';
 import '../Login Screen/Login_Screen.dart';
+import '../../assets.dart';
 
+// ignore: constant_identifier_names
 enum FormData { Name, Phone, Email, Gender, password, ConfirmPassword }
 
 class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
+
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
@@ -20,11 +24,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
   FormData? selected;
 
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController phoneController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
-  TextEditingController confirmPasswordController = new TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
                 HexColor("#fff").withOpacity(0.2), BlendMode.dstATop),
-            image: const NetworkImage(
-              'https://mir-s3-cdn-cf.behance.net/project_modules/fs/01b4bd84253993.5d56acc35e143.jpg',
-            ),
+            image: const AssetImage(AssetPaths.background),
           ),
         ),
         child: Center(
@@ -69,10 +71,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        FadeAnimation(
+                        const FadeAnimation(
                           delay: 0.8,
-                          child: Image.network(
-                            "https://cdni.iconscout.com/illustration/premium/thumb/job-starting-date-2537382-2146478.png",
+                          child: Image(
+                            image: AssetImage(AssetPaths.splash),
                             width: 100,
                             height: 100,
                           ),
@@ -82,13 +84,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         FadeAnimation(
                           delay: 1,
-                          child: Container(
-                            child: Text(
-                              "Create your account",
-                              style: TextStyle(
-                                  color: Colors.white.withOpacity(0.9),
-                                  letterSpacing: 0.5),
-                            ),
+                          child: Text(
+                            "Create your account",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.9),
+                                letterSpacing: 0.5),
                           ),
                         ),
                         const SizedBox(
@@ -382,7 +382,14 @@ class _SignupScreenState extends State<SignupScreen> {
                           delay: 1,
                           child: TextButton(
                               onPressed: () {},
-                              child: Text(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: const Color(0xFF2697FF),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 14.0, horizontal: 80),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(12.0))),
+                              child: const Text(
                                 "Sign Up",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -390,14 +397,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                              ),
-                              style: TextButton.styleFrom(
-                                  backgroundColor: const Color(0xFF2697FF),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 14.0, horizontal: 80),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(12.0)))),
+                              )),
                         ),
                       ],
                     ),
@@ -426,7 +426,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           Navigator.pop(context);
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
-                            return LoginScreen();
+                            return const LoginScreen();
                           }));
                         },
                         child: Text("Sing in",
