@@ -4,13 +4,17 @@ import '../../Core/Animation/Fade_Animation.dart';
 import '../../Core/Colors/Hex_Color.dart';
 import '../Forgot Password/Forgot_Password_Screen.dart';
 import '../Sign Up Screen/SignUp_Screen.dart';
+import '../../assets.dart';
 
 enum FormData {
+  // ignore: constant_identifier_names
   Email,
   password,
 }
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -23,8 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
   bool ispasswordev = true;
   FormData? selected;
 
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
                 HexColor("#fff").withOpacity(0.2), BlendMode.dstATop),
-            image: const NetworkImage(
-              'https://mir-s3-cdn-cf.behance.net/project_modules/fs/01b4bd84253993.5d56acc35e143.jpg',
-            ),
+            image: const AssetImage(AssetPaths.background),
           ),
         ),
         child: Center(
@@ -69,10 +71,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        FadeAnimation(
+                        const FadeAnimation(
                           delay: 0.8,
-                          child: Image.network(
-                            "https://cdni.iconscout.com/illustration/premium/thumb/job-starting-date-2537382-2146478.png",
+                          child: Image(
+                            image: AssetImage(AssetPaths.splash),
                             width: 100,
                             height: 100,
                           ),
@@ -80,9 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        FadeAnimation(
+                        const FadeAnimation(
                           delay: 1,
-                          child: const Text(
+                          child: Text(
                             "Please sign in to continue",
                             style: TextStyle(
                                 color: Colors.white, letterSpacing: 0.5),
@@ -217,7 +219,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 //   return MyApp(isLogin: true);
                                 // }));
                               },
-                              child: Text(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: const Color(0xFF2697FF),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 14.0, horizontal: 80),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(12.0))),
+                              child: const Text(
                                 "Login",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -225,14 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                              ),
-                              style: TextButton.styleFrom(
-                                  backgroundColor: Color(0xFF2697FF),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 14.0, horizontal: 80),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(12.0)))),
+                              )),
                         ),
                       ],
                     ),
@@ -251,7 +253,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.pop(context);
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return ForgotPasswordScreen();
+                        return const ForgotPasswordScreen();
                       }));
                     }),
                     child: Text("Can't Log In?",
@@ -278,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pop(context);
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
-                            return SignupScreen();
+                            return const SignupScreen();
                           }));
                         },
                         child: Text("Sign up",

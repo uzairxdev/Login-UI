@@ -6,6 +6,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../Core/Animation/Fade_Animation.dart';
 import '../../Core/Colors/Hex_Color.dart';
 import '../Login Screen/Login_Screen.dart';
+import '../../assets.dart';
 
 class PinCodeVerificationScreen extends StatefulWidget {
   final String? phoneNumber;
@@ -71,9 +72,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
                 HexColor("#fff").withOpacity(0.2), BlendMode.dstATop),
-            image: const NetworkImage(
-              'https://mir-s3-cdn-cf.behance.net/project_modules/fs/01b4bd84253993.5d56acc35e143.jpg',
-            ),
+            image: const AssetImage(AssetPaths.background),
           ),
         ),
         child: Center(
@@ -94,10 +93,10 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        FadeAnimation(
+                        const FadeAnimation(
                           delay: 0.8,
-                          child: Image.network(
-                            "https://cdni.iconscout.com/illustration/premium/thumb/job-starting-date-2537382-2146478.png",
+                          child: Image(
+                            image: AssetImage(AssetPaths.splash),
                             width: 100,
                             height: 100,
                           ),
@@ -107,13 +106,11 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         ),
                         FadeAnimation(
                           delay: 1,
-                          child: Container(
-                            child: Text(
-                              "Let us help you",
-                              style: TextStyle(
-                                  color: Colors.white.withOpacity(0.9),
-                                  letterSpacing: 0.5),
-                            ),
+                          child: Text(
+                            "Let us help you",
+                            style: TextStyle(
+                                color: Colors.white.withOpacity(0.9),
+                                letterSpacing: 0.5),
                           ),
                         ),
                         const SizedBox(
@@ -274,7 +271,14 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                                   );
                                 }
                               },
-                              child: Text(
+                              style: TextButton.styleFrom(
+                                  backgroundColor: const Color(0xFF2697FF),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 14.0, horizontal: 80),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(12.0))),
+                              child: const Text(
                                 "Verify",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -282,14 +286,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                              ),
-                              style: TextButton.styleFrom(
-                                  backgroundColor: const Color(0xFF2697FF),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 14.0, horizontal: 80),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(12.0)))),
+                              )),
                         ),
                       ],
                     ),
@@ -318,7 +315,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                           Navigator.pop(context);
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
-                            return LoginScreen();
+                            return const LoginScreen();
                           }));
                         },
                         child: Text("Sing in",
